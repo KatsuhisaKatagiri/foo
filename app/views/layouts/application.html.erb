@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foo</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="user_nav">  
+      <% if current_user %> 
+        Welcome, <%= current_user.name %>!    <%= link_to "Sign Out", signout_path %> 
+        <%= link_to "Mypage", :controller=>'articles',:action=>'mypage' %>
+      <% else %> 
+        <%= link_to "Sign in with Twitter", "/auth/twitter" %> 
+        <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+        <%= link_to "Sign in with Google", "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id" %>
+        <%= link_to "Sign in with Yahoo", "/auth/open_id?openid_url=yahoo.co.jp" %>     
+         <%= link_to "Sign in with Mixi", "/auth/open_id?openid_url=mixi.jp" %>
+        <%= link_to "Sign in with OpenID", "/auth/open_id" %> 
+      <% end %> 
+</div>  
+<%= yield %>
+
+</body>
+</html>
